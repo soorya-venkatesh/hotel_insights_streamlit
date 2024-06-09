@@ -3,5 +3,8 @@
 **Outscrapper link**:
 `https://app.outscraper.com/profile`
 
-**Streamlit Link**:
+**Streamlit Admin Link**:
 `https://share.streamlit.io/signup`
+
+**Streamlit Web Page**:
+`https://sadhabishegam-reviews.streamlit.app/`
