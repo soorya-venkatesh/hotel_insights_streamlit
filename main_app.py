@@ -195,8 +195,8 @@ with tab3:
          with st.popover("More Info"):
             current_avg=temp_df_time_filtered['review_rating'].mean().round(2)
             prev_avg=temp_df_time_filtered_2['review_rating'].mean().round(2)
-            st.markdown(f'Average Rating over last 1 month: {current_avg}')
-            st.markdown(f'Average Rating over last to last month: {prev_avg}')
+            st.markdown(f'Average Rating over last 15 month(s): {current_avg}')
+            st.markdown(f'Average Rating over last to last 15 month(s): {prev_avg}')
             st.markdown(f'perentage increase/decrease {percentage_diff}%')
       
    with col2:
