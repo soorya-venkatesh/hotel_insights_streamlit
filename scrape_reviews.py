@@ -35,7 +35,8 @@ new_df=pd.DataFrame(columns=['review_rating','review_date'],index=range(len(outs
 for id,element in enumerate(outscrapper_result['data'][0]['reviews_data']):
     # new_df.loc[id,'review_id']=element['review_id']
     new_df.loc[id,'review_rating']=element['review_rating']
-    new_df.loc[id,'review_date']=element['review_datetime_utc']
+    # new_df.loc[id,'review_date']=element['review_datetime_utc']
+    new_df.loc[id,'review_date']=pd.to_datetime(element['review_datetime_utc']).strftime('%Y-%m-%d %H:%M:%S')
     # new_df.loc[id,'review_text']=element['review_text']
 
 df=pd.concat([df, new_df], ignore_index=True, sort=False)
