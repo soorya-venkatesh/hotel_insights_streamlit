@@ -18,6 +18,10 @@ def get_df(df_path):
    
    return df
 
+def display_date_range(df):
+   min_date=df['review_date'].min().strftime('%d-%m-%Y')
+   max_date=df['review_date'].max().strftime('%d-%m-%Y')
+   st.write(f'**Analysis Date Range from {min_date} to {max_date}**')
 
 def filter_time_df(df,previous_n_days_lm,previous_n_days_ul):
    previous_n_days_ul = datetime.date.today() - timedelta(days = previous_n_days_ul)
@@ -120,8 +124,9 @@ with tab1:
    temp_df = process_df(temp_df_time_filtered)
    temp_df_2= process_df(temp_df_time_filtered_2)
    weekly_df=resample_df_date(temp_df_time_filtered,by='W')
-   
+   display_date_range(temp_df_time_filtered)
    col1,col2=st.columns(2)
+   
    with col1:
       percentage_diff=get_percentage(temp_df_time_filtered['review_rating'].mean().round(2),temp_df_time_filtered_2['review_rating'].mean().round(2))
       st.metric('Average Rating',str(temp_df_time_filtered['review_rating'].mean().round(2)),f'{percentage_diff}%')
@@ -152,6 +157,7 @@ with tab2:
    temp_df = process_df(temp_df_time_filtered)
    temp_df_2= process_df(temp_df_time_filtered_2)
    daily_df=resample_df_date(temp_df_time_filtered,by='D')
+   display_date_range(temp_df_time_filtered)
 
    col1,col2=st.columns(2)
    with col1:
@@ -186,7 +192,8 @@ with tab3:
    temp_df_time_filtered_2=filter_time_df(df,previous_n_days_lm=456*2,previous_n_days_ul=456)
    temp_df = process_df(temp_df_time_filtered)
    temp_df_2= process_df(temp_df_time_filtered_2)
-   monthly_df=resample_df_date(temp_df_time_filtered,by='ME ')
+   monthly_df=resample_df_date(temp_df_time_filtered,by='ME')
+   display_date_range(temp_df_time_filtered)
    
    col1,col2=st.columns(2)
    with col1:
