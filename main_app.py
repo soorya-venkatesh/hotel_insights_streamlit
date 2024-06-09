@@ -9,11 +9,13 @@ import plotly.figure_factory as ff
 st.set_page_config(layout="wide")
 st.title('Hotel Sadhabishegam Trend Analyzer')
 
+
 def get_df(df_path):
    
    df=pd.read_csv(df_path)
    df['review_date']=pd.to_datetime(df['review_date']).dt.date
-   df=df.sort_values('review_date').sort_index()
+   df=df.sort_values('review_date',ascending=False).reset_index(drop=True)
+   
    return df
 
 
@@ -100,6 +102,9 @@ def more_info_ratings_given(n):
          
 
 df=get_df(df_path='./sadhabishegam_reviews1.csv')
+lastest_update=df['review_date'].loc[0].strftime('%d/%m/%Y')
+st.markdown(f'Last update happened on {lastest_update}. Update happens every Monday,Thursday and Saturday')
+
 col1,col2=st.columns(2)
 col1.metric('Average Rating',str(df['review_rating'].mean().round(2)))
 col2.metric('Total Reviews',str(len(df)))
